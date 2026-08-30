@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarShop — Покупка Telegram Stars</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #0088cc;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Сетка товаров */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+            border: 1px solid #334155;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: #22c55e;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #0077b3;
+        }
+
+        /* Форма поддержки (как на abobashop /support) */
+        .support-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-color);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background-color: #dc2626;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌟 StarShop</h1>
+        <p>Быстрая и надежная покупка Telegram Stars</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Секция товаров -->
+        <h2 class="section-title">Выберите пакет Звезд</h2>
+        <div class="products-grid">
+            
+            <!-- Карточка 1 -->
+            <div class="product-card">
+                <div class="product-icon">⭐</div>
+                <div class="product-title">50 Telegram Stars</div>
+                <div class="product-price">150 ₽</div>
+                <button class="buy-btn" onclick="redirectToPay(50, 150)">Купить</button>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="product-card">
+                <div class="product-icon">🌟</div>
+                <div class="product-title">250 Telegram Stars</div>
+                <div class="product-price">690 ₽</div>
+                <button class="buy-btn" onclick="redirectToPay(250, 690)">Купить</button>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="product-card">
+                <div class="product-icon">✨</div>
+                <div class="product-title">1000 Telegram Stars</div>
+                <div class="product-price">2490 ₽</div>
+                <button class="buy-btn" onclick="redirectToPay(1000, 2490)">Купить</button>
+            </div>
+
+        </div>
+
+        <!-- Секция техподдержки -->
+        <h2 class="section-title" id="support">Служба поддержки</h2>
+        <div class="support-container">
+            <form id="supportForm">
+                <div class="form-group">
+                    <label for="tg_username">Ваш Telegram (@username):</label>
+                    <input type="text" id="tg_username" placeholder="@alex_star" required>
+                </div>
+                <div class="form-group">
+                    <label for="order_id">Номер заказа (если есть):</label>
+                    <input type="text" id="order_id" placeholder="Например, #10234">
+                </div>
+                <div class="form-group">
+                    <label for="message">Опишите вашу проблему:</label>
+                    <textarea id="message" placeholder="Не пришли звезды / вопрос по оплате..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить обращение</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 StarShop. Все права защищены. Сайт не связан с Telegram Inc.</p>
+    </footer>
+
+    <script>
+        // Функция обработки нажатия кнопки "Купить"
+        function redirectToPay(starsAmount, price) {
+            const username = prompt("Введите ваш Telegram @username для начисления звезд:");
+            if (username) {
+                alert(`Перенаправление на оплату ${starsAmount} звезд за ${price}₽ для пользователя ${username}. (Здесь вы можете подключить CryptoBot, ЮKassa или Aaio)`);
+                // Пример перенаправления на твой личный TG или платежку:
+                // window.location.href = `https://t.me{starsAmount}`;
+            }
+        }
+
+        // Обработка формы поддержки
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const tg = document.getElementById('tg_username').value;
+            const order = document.getElementById('order_id').value;
+            const msg = document.getElementById('message').value;
+
+            alert(`Спасибо! Ваше обращение отправлено. Мы свяжемся с вами в Telegram: ${tg}`);
+            
+            // Здесь можно настроить отправку данных формы в твой Telegram-чат через Webhook бота.
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarShop — Покупка Telegram Stars</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #0088cc;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Сетка товаров */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+            border: 1px solid #334155;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: #22c55e;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #0077b3;
+        }
+
+        /* Форма поддержки (как на abobashop /support) */
+        .support-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-color);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background-color: #dc2626;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌟 StarShop</h1>
+        <p>Быстрая и надежная покупка Telegram Stars</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Секция товаров -->
+        <h2 class="section-title">Выберите пакет Звезд</h2>
+        <div class="products-grid">
+            
+            <!-- Карточка 1 -->
+            <div class="product-card">
+                <div class="product-icon">⭐</div>
+                <div class="product-title">50 Telegram Stars</div>
+                <div class="product-price">150 ₽</div>
+                <button class="buy-btn" onclick="redirectToPay(50, 150)">Купить</button>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="product-card">
+                <div class="product-icon">🌟</div>
+                <div class="product-title">250 Telegram Stars</div>
+                <div class="product-price">690 ₽</div>
+                <button class="buy-btn" onclick="redirectToPay(250, 690)">Купить</button>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="product-card">
+                <div class="product-icon">✨</div>
+                <div class="product-title">1000 Telegram Stars</div>
+                <div class="product-price">2490 ₽</div>
+                <button class="buy-btn" onclick="redirectToPay(1000, 2490)">Купить</button>
+            </div>
+
+        </div>
+
+        <!-- Секция техподдержки -->
+        <h2 class="section-title" id="support">Служба поддержки</h2>
+        <div class="support-container">
+            <form id="supportForm">
+                <div class="form-group">
+                    <label for="tg_username">Ваш Telegram (@username):</label>
+                    <input type="text" id="tg_username" placeholder="@alex_star" required>
+                </div>
+                <div class="form-group">
+                    <label for="order_id">Номер заказа (если есть):</label>
+                    <input type="text" id="order_id" placeholder="Например, #10234">
+                </div>
+                <div class="form-group">
+                    <label for="message">Опишите вашу проблему:</label>
+                    <textarea id="message" placeholder="Не пришли звезды / вопрос по оплате..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить обращение</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 StarShop. Все права защищены. Сайт не связан с Telegram Inc.</p>
+    </footer>
+
+    <script>
+        // Функция обработки нажатия кнопки "Купить"
+        function redirectToPay(starsAmount, price) {
+            const username = prompt("Введите ваш Telegram @username для начисления звезд:");
+            if (username) {
+                alert(`Перенаправление на оплату ${starsAmount} звезд за ${price}₽ для пользователя ${username}. (Здесь вы можете подключить CryptoBot, ЮKassa или Aaio)`);
+                // Пример перенаправления на твой личный TG или платежку:
+                // window.location.href = `https://t.me{starsAmount}`;
+            }
+        }
+
+        // Обработка формы поддержки
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const tg = document.getElementById('tg_username').value;
+            const order = document.getElementById('order_id').value;
+            const msg = document.getElementById('message').value;
+
+            alert(`Спасибо! Ваше обращение отправлено. Мы свяжемся с вами в Telegram: ${tg}`);
+            
+            // Здесь можно настроить отправку данных формы в твой Telegram-чат через Webhook бота.
+            this.reset();
+        });
+    </script>
+</body>
+</html>
